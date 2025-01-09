@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 기능 이벤트 처리</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        #hoverBox {
+            width: 100%;
+            height: 100%;
+            background-color: lemonchiffon;
+        }
+
+        #divBox{
+            width: 200px;
+            height: 200px;
+            background-color: aliceblue;
+        }
+
+        /* id가 class 보다 우선순위가 높기 때문에 .plusCss 적용XX style에는 보통 클래스 사용 */
+        .plusCss{
+            background-color: orange;
+        }
+
+        .defaultCss{
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+<h1>이벤트 처리</h1>
+<button id="clickMe">클릭 이벤트</button>
+<div id="hoverBox">마우스 오버</div>
+
+<div id="clickCheack"></div>
+<script>
+    //document.ready(function(){}); 생략
+
+    // 클릭이라는 이벤트가 발생  이벤트 = 예기치못한 행동이나 동작 발생
+    $('#clickMe').click(function () {
+        $('#clickCheack').append('<p>버튼이 클릭되었습니다.</p>');
+    });
+
+    //마우스 오버 이벤트
+    // $().hover(function{마우스가 태그로 왔을 떄}, function{마우스가 태그를 떠났을 때})
+    $('#hoverBox').hover(function () {
+            // 1. 마우스가 id = hoverBox 위로 왔을 때
+            $('#hoverBox').css('background', 'yellow');
+        },
+        // 2. 마우스가 id = hoverBox 를 떠났을 때
+        function () {
+            $('#hoverBox').css('background', 'lemonchiffon');
+        });
+
+
+    //마우스 오버 이벤트
+    // $().hover(function{마우스가 태그로 왔을 떄}, function{마우스가 태그를 떠났을 때})
+    $('#hoverBox').hover(function () {
+            // 1. 마우스가 id = hoverBox 위로 왔을 때
+            $(this).css('background', 'yellow'); // this = #hoverBox
+        },
+        // 2. 마우스가 id = hoverBox 를 떠났을 때
+        function () {
+            $(this).css('background', 'lemonchiffon'); // this = #hoverBox
+        });
+</script>
+
+<button id="clickHere">클릭이벤트</button>
+<div id="divBox"></div>
+
+<script>
+    /*
+    mouseleave = vanilla javascript 에서 mouseover와 같음
+                 마우스를 올리면 발생할 기능
+    mouseenter = vanilla javascript 에서 mouseout 와 같음
+                 마우스가 태그를 떠나면 발생할 기능
+    hover =  function(){마우스를 올리면 발생할 기능}, function(){마우스가 태그를 떠나면 발생할 기능}
+    */
+    /* 마우스가 divbox 위로 올라왔을 때 orange 변형
+    * divbox를 떠났을 때 aliceblue 돌아오기*/
+    // $('#divBox').hover(function (){
+    //     $('#divBox').css('background','orange');
+    // }, function() {$('#divBox').css('background','aliceblue');
+    // });
+
+    $('#divBox').hover(function (){
+        $(this).addClass('plusCss');
+    }, function() {$(this).removeClass('defaultCss');
+    });
+</script>
+</body>
+</html>
