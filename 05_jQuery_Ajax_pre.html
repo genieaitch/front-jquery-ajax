@@ -56,25 +56,34 @@
         })
     })
 </script>
-
+<br>
 <button id="loadCat">고양이 사진 가져오기</button>
 <div id="catContainer"></div>
 <script>
-    $('#loadCat').click(function (){
-        $.ajax({
-            url: 'https://api.thecatapi.com/v1/images/search?limit=1',
-            method: 'GET',
-            success:
-            function (data) {
-                $('#catContainer').empty();
-                $('#catContainer').append('<img class="image-item" src= ' + data[0].url + ' >');
-            },
-            error:
-            function () {
-                $('#catContainer').html('<p>고양이 사진을 가져오는 데 실패했습니다.</p>');
-            }
-        })
-    })
+    $(document).ready(function () {
+        $('#loadCat').click(function () {
+            $.ajax({
+                url: 'https://api.thecatapi.com/v1/images/search?limit=1',
+                method: 'GET',
+                success: //back-end나 api에서 데이터를 성공적으로 가져온 경우
+                    function (data) {
+                        if (data.length > 0) {// 가져온 데이터가 0개 이상
+                            const catUrl = data[0].url
+                            $('#catContainer').empty(); // 기존에 존재하는 고양이 사진을 지우기
+                            $('#catContainer').append('<img class="image-item" src= ' + catUrl + ' alt="고양이 이미지">');
+                        } else { //존재하는 데이터가 0개인 경우
+                            //$('catContainer').html('<p>조회된 고양이 사진이 0 장 입니다.</p>');
+                            //$('catContainer').html('<p>조회된 고양이 사진이' + data.length + '장 입니다.</p>');
+                            $('catContainer').html(`<p>조회된 고양이 사진이 data.length 장 입니다.</p>`);
+                        }
+                    },
+                error: //back-end에서 데이터를 가져오지 못하는 경우
+                    function () {
+                        $('#catContainer').html('<p>고양이 사진을 가져오는 데 실패했습니다.</p>');
+                    }
+            })
+        });
+    });
 </script>
 
 </body>
