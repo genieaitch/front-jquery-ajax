@@ -1,0 +1,129 @@
+body {
+    height: auto;
+    background-color: #4fc3f7;
+    padding: 0;
+    margin: 0;
+}
+
+#talkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 30px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 80px;
+    border-bottom: black 2px solid;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+p {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+}
+
+.bujang-test {
+    width: 340px;
+    border-radius: 8px;
+}
+
+.test {
+    width: 340px;
+}
+
+#test-btn {
+    width: 340px;
+    background-color: #ff9a9e;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold;
+    height: 40px;
+}
+
+#test-btn:hover {
+    background-color: #eb797d;
+    cursor: pointer;
+}
+
+#quiz {
+    width: 300px;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: auto;
+    padding: 0 20px;
+    border-radius: 4px;
+}
+
+#bujangTalk {
+    align-self: flex-end;
+    width: 300px;
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: auto;
+    padding: 0 20px;
+    border-radius: 4px;
+    text-align: left;
+}
+
+.quiz-css {
+    font-weight: bold;
+    font-size: 15px;
+    color: #ff9a9e;
+}
+
+.quiz-css2 {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.talk-input {
+    width: 360px;
+    border: none;
+    height: 30px;
+    border-radius: 8px;
+    padding: 0 20px;
+    margin-right: 20px;
+}
+
+#answer-btn {
+    width: 90px;
+    height: 30px;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+
+#answer-btn:hover {
+    background-color: #2c3e50;
+}
+
+.answer {
+    align-self: center;
+    margin-top: 20px;
+}
+
+.success {
+    width: 300px;
+    background-color: #ff6f91;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}

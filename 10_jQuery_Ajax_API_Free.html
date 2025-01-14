@@ -3,67 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>고독한 부장님 오픈채팅</title>
     <link rel="icon" href="bujan_icon.png" type="image/x-icon">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="10_jQuery_Ajax_API_Free.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <style>
-        body{
-            height: auto;
-            background-color: #4fc3f7;
-            padding: 0;
-            margin: 0;
-        }
-        #talkContainer {
-            display: table;
-            padding: 30px;
-        }
-        hr {
-            border: black 1px solid;
-        }
-        header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            height: 40px;
-        }
-    </style>
 </head>
 <body>
-<header>👨고독한 부장님 오픈채팅👨</header><hr>
+<header>👨고독한 부장님 오픈채팅👨</header>
 <div id="talkContainer">
-    <p>어서오세요 고독한 부장님 오픈채팅에 입장하신 걸 환영합니다. 이곳은 요즘부장으로 살아가는 꿀팁을 알려드리는 고독한 부장님 오픈채팅입니다.
-        간단한 테스트를 통해 부장님이 맞는지 체크하겠습니다. 부장님 테스트 버튼을 눌러 테스트를 진행해 주세요.</p>
+    <p>어서오세요🙌 <br> 고독한 부장님 오픈채팅에 입장하신 걸 환영합니다🤓 <br><br>이곳은 요즘부장으로 살아가는 꿀팁을 알려드리는 고독한 부장님 오픈채팅입니다.
+        간단한 테스트를 통해 부장님이 맞는지 체크하겠습니다. <br><br>부장님 테스트 버튼을 눌러 테스트를 진행해 주세요.↓↓↓↓↓</p>
+    <div class="test">
+        <img class="bujang-test" src="bujangTest.png">
+        <button id="test-btn">부장님 테스트</button>
+    </div>
     <div id="quiz"><!-- 농담 생성하는 곳 --></div>
-    <button id="test-btn">부장님 테스트</button>
     <div id="bujangTalk"><!-- 농담 답하는 곳 --></div>
-    <input type="text" placeholder="답변하기 버튼을 클릭하세요">
+    <div id="success"><!-- 통과 --></div>
+    <div class="answer">
+    <input class="talk-input" type="text" placeholder="답변하기 버튼을 클릭하세요">
     <button id="answer-btn">답변하기</button>
+    </div>
 </div>
-<script>
-    $('#test-btn').click(function () {
-        $.ajax({
-            url: 'https://official-joke-api.appspot.com/random_joke',
-            method: 'get',
-            dataType: 'json',
-            success:
-                function (data) {
-                    $('#quiz').text(data.setup);
-                    console.log('테스트 데이터 불러오기 성공')
-                },
-            error:
-            function (){
-                alert("테스트 데이터를 불러오지 못했습니다. 다시 시도해 주세요.")
-                    console.log('테스트 데이터 불러오기 실패')
-            }
-        });
-
-    });
-
-    $('')
-
-
-</script>
+<script src="10_jQuery_Ajax_API_Free.js"></script>
 </body>
 </html>
