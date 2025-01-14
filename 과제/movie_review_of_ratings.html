@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 평점 조회하기</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<header>영화 평점 조회하기</header>
+<div class="main-container">
+    <div class="section" id="topMovies">
+        <h3>평점 높은 영화</h3>
+        <div class="movie-list" id="topRatedMovies"></div>
+        <button id="loadMovies">새로운 영화보기</button>
+    </div>
+</div>
+<script>
+    const movies = ["Inception", "The Dark Knight", "Interstellar", "The Godfather", "The Matrix"];
+    const randomMovies = movies.sort(() => 0.5 - Math.random()).slice(0, 5);
+    const apiKey = '89d9071';
+    const apiURL = `http://www.omdbapi.com/?t=${encodeURIComponent(movie)}&apikey=${apiKey}`;
+
+    function loadMovie() {
+        $.ajax({
+            url: apiURL,
+            method: 'GET',
+            success:
+                $.each(data, function (index, movie) {
+                    $('#topRatedMovies').html("");
+                    $('#topRatedMovies').append(`
+                    <div class="movie-list">
+                    <img src="${movie.Poster}">
+                    <p>${movie.Title}</p>
+                    <p>YEAR : ${movie.Year}</p>
+                    <p>IMDB 평점 : ${movie.Ratings.imdbRating}</p>
+                    </div>
+                    `);
+
+                }),
+            error:
+            function (){
+                alert("영화 데이터를 불러오는데 실패했습니다. 다시 시도해주세요.")
+            }
+        });
+    }
+
+    loadMovie();
+
+    $('#loadMovies').click(function (){
+        loadMovie();
+    })
+
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .seller-optionColor {
+
+        }
+
+        .seller-optionSize {
+
+        }
+
+        .option-disabled {
+
+        }
+    </style>
+</head>
+<body>
+<input type="file" id="image" class="option-disabled">
+<div id="preview"></div>
+
+<div id="color-option-container" class="seller-optionColor">
+    <button class="seller-option-add-button1">Add Color</button>
+</div>
+
+<div id="size-option-container" class="seller-optionSize">
+    <button class="seller-option-add-button2">Add Size</button>
+</div>
+
+<script>
+
+    const fileInput = document.getElementById('image');
+    const preview = document.getElementById('preview');
+    const colorContainer = document.querySelector('#color-option-container');
+
+
+    // 이미지 업로드 및 미리보기
+    fileInput.addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.innerHTML = "";
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+/*
+    // 이미지 업로드 및 미리보기 jQuery
+    const fileInput = $('#image');
+    const preview = $('#preview');
+
+    $(document).ready(function () {
+        $('#image').click(function () {
+            $.ajax({
+                url: fileInput.show(),
+                method: 'GET',
+                success:
+                    function (data) {
+                        $('#preview').on('change', function () {
+                            $('#preview').show();
+                        })
+                    },
+                error:
+                    function () {
+
+                    }
+            })
+        })
+
+    });
+*/
+    // 색상 옵션 추가 및 삭제
+    colorContainer.addEventListener('click', function (event) {
+        if (event.target.closest('.seller-option-add-button1')) {
+            const colorOption = document.createElement('div');
+            colorOption.innerHTML = `
+            <input type="text" class="seller-optionColor" placeholder="Enter color">
+            <button class="remove-color">Remove</button>`;
+            colorContainer.appendChild(colorOption);
+        }
+        if (event.target.closest('.remove-color')) {
+            event.target.closest('div').remove();
+        }
+    });
+
+    $('#seller-option-add-button1').click(function (){
+        const colorUrl = $('#color-option-container').val().trim();
+       $.ajax({
+           url: colorUrl,
+           method: 'GET',
+           success(data){
+               if (data.length > 0){
+                   $.each(data, function (index, color){
+                      $("#color-option-container").append(`
+                      <input type="text" class="seller-optionColor" placeholder="Enter color">
+            <button class="remove-color">Remove</button>\`;
+                      `)
+                   });
+               }
+           }
+
+       }) ;
+    });
+
+</script>
+</body>
+</html>
